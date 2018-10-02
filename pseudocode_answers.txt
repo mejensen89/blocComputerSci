@@ -1,0 +1,7 @@
+Why do programmers use pseudocode?
+
+A: to outline algorithms. It allows programmers to outline their intentions.
+
+If you run pseudocode on your computer what would happen?
+
+A: Nothing, it's not a programming language that the machine would understand.
