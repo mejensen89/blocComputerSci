@@ -1,13 +1,14 @@
-1. In your own words, explain what clean code is and why it is important? 
+> In your own words, explain what clean code is and why it is important? 
 
 A: Clean code is just following best practices to keep your code concise and easy to work with. It is important because there is a very good chance that at some point people other than yourself will have to modify your code. By making it easy to ready and easy to work with, you can ensure that it is easy to update and maintain, especially if you're invovled in a large, constantly changing project like many modern development processes. 
 
-2. Read this article about Toyota and their use of bad code. Although you may not yet understand all of the topics discussed, think about another commonly used object that relies on computers and explain what would happen if the code was not created to an acceptable standard.
+> Read this article about Toyota and their use of bad code. Although you may not yet understand all of the topics discussed, think about another commonly used object that relies on computers and explain what would happen if the code was not created to an acceptable standard.
 
-A: The most obvious example of a commonly used item that uses code would be modern cell phones. Keeping code to an acceptable standard there ensures user information security and device reliablility. Failure to meet standards will result in performance issues, but nothing like the car's accelerator getting stuck because of a code break down. 
+A: The most obvious example of a commonly used item that uses code would be modern cell phones. Keeping code to an acceptable standard there ensures user information security and device reliability. Failure to meet standards will result in performance issues, but nothing like the car's accelerator getting stuck because of a code break down. 
 
-3. Would you consider the following to be clean code? Explain why or why not. If not, refactor the code.
+> Would you consider the following to be clean code? Explain why or why not. If not, refactor the code.
 
+```
 FUNCTION do(x, y)               // Creating a new function
  IF y = "F" THEN               // Check if y is equal "F"
  SET z to (x-32) * (5/9)       // Formula to convert degrees fahrenheit to celsius
@@ -17,10 +18,11 @@ FUNCTION do(x, y)               // Creating a new function
  PRINT z                       // Print result
  END IF
 END FUNCTION
+```
 
-A: 
-I think the code is pretty clean. The only change would be to make the arguments more clear and to rename the function so its purpose is clear 
+A: I think the code is pretty clean. The only change would be to make the arguments more clear and to rename the function so its purpose is clear 
 
+```
 FUNCTION convertTemp(temp, units)               // Creating a new function
  IF units = "F" THEN               // Check if y is equal "F"
  SET outputTemp to (temp-32) * (5/9)       // Formula to convert degrees fahrenheit to celsius
@@ -30,9 +32,11 @@ FUNCTION convertTemp(temp, units)               // Creating a new function
  PRINT outputTemp                       // Print result
  END IF
 END FUNCTION
+```
 
-4. Would you consider the following to be clean code? Explain why or why not. If not, refactor the code.
+> Would you consider the following to be clean code? Explain why or why not. If not, refactor the code.
 
+```
 FUNCTION calcPercent(sum, total)
  IF NOT(total = 0) THEN
      SET percentage to sum / total * 100
@@ -42,13 +46,15 @@ FUNCTION calcPercent(sum, total)
 
  PRINT percentage
 END FUNCTION
+```
 
 A: Yes that's clean and concise code. 
 
-5. Using pseudocode, refactor the code for the following examples using the principles you have learned in this checkpoint.
+> Using pseudocode, refactor the code for the following examples using the principles you have learned in this checkpoint.
 
-a. The following function prints the subtotal of a customer's transaction and receives payment accordingly.
+> a. The following function prints the subtotal of a customer's transaction and receives payment accordingly.
 
+```
 FUNCTION checkOutCustomer(subTotal, discountRate, paymentType)
    PRINT "Your total due is: " + subTotal * discountRate + (subTotal * tax)
 
@@ -60,9 +66,10 @@ FUNCTION checkOutCustomer(subTotal, discountRate, paymentType)
        PRINT "Your credit card has been charged: " + subTotal * discountRate + (subTotal * tax)
    END IF
 END FUNCTION
+```
 
 ANSWERA: 
-
+```
 FUNCTION customerPays(subTotal, discountRate, paymentType) //made function name a verb. "Checkout" is not a verb
    PRINT "Your total due is: " + subTotal * discountRate + (subTotal * tax)
 
@@ -74,9 +81,11 @@ FUNCTION customerPays(subTotal, discountRate, paymentType) //made function name 
        PRINT "Your credit card has been charged: " + subTotal * discountRate + (subTotal * tax)
    END IF
 END FUNCTION
+```
 
-b. The following function checks out a book if there are no issues with the guest's account.
+> b. The following function checks out a book if there are no issues with the guest's account.
 
+```
 FUNCTION checkoutBook(book, guest)
  IF guest.accountActive THEN
      IF NOT(guest.hasOverdueBooks) THEN
@@ -90,9 +99,10 @@ FUNCTION checkoutBook(book, guest)
      PRINT "Unable to check out book."
  END IF
 END FUNCTION
+```
+ANSWERB: Added other conditions to make the function more useful. Rather than just spitting an error message, I mapped the condition fails to each print out a specific error message to inform the customer why they can't check out a book or who to speak to if they need further assistance. Also unnested the conditionals and placed them into one check. 
 
-ANSWERB: //Added other conditions to make function more useful. Rather than just spitting an error message, I mapped the condition fails to each print out a specifc error message to inform the customer why they can't checkout a book or who to speak to if they need further assistance. 
-
+```
 FUNCTION checkoutBook(book, guest)
  IF guest.accountActive AND NOT(guest.hasOverdueBooks) AND guest.oustandingFees = 0  THEN
          APPEND book to guest.books
@@ -111,10 +121,10 @@ ELSE IF guest.outstandingFees > 0 THEN
 ELSE PRINT "There is a problem, please see a librarian for further assistance". 
 END IF
 END FUNCTION
+```
 
-
-c. The following class is a code snippet that should support the transactions a customer can perform at an ATM.
-
+> c. The following class is a code snippet that should support the transactions a customer can perform at an ATM.
+```
 CLASS BankAccount
 
  FUNCTION displayBalance
@@ -148,8 +158,9 @@ CLASS BankAccount
  ....
 
 END
-
+```
 ANSWERC: // Split the offer functions off into the class offer
+```
 CLASS BankAccount
 
  FUNCTION displayBalance
@@ -185,6 +196,7 @@ CLASS offer
 END CLASS
 
 END
+```
 
 
 

@@ -1,0 +1,62 @@
+A line of people at an amusement park ride.
+
+The line is composed of members, represented as strings.
+There is a front to the line, as well as a back.
+When someone enters the line, place them at the end.
+People may leave the line whenever they see fit, and those behind them take their place.
+Given the above real-world information, use an array data structure to code the following solution.
+
+a) Use an array input: ["Vivian", "Ava", "Josh", "Patrick", "Mike"]
+
+ANSWER A) let line = ["Vivian", "Ava", "Josh", "Patrick", "Mike"]
+
+b) Insert a new person, "Mary" at the end of the line. In other words, you should insert Mary after Mike.
+
+let linesUp = function(name) {
+	line.push(name)
+}
+
+linesUp("Mary");
+
+
+c) Find a person in line named "Josh." This function should return the position of 2 in the array, (recall that arrays are 0-based).
+
+let findPerson = function(name, array) {
+	for( var i=0; i<array.length; i++) {
+		if (array[i].match(name)) return i;
+		else return "That person is not in that line";
+	}
+}
+
+d) Find a person in line named "Emily." What should your function return if it does not find the item in the array?
+
+A: That person is not in that line.
+
+
+e) What if Ava wants to allow a friend, "Melissa", to cut in line in front of her? How would you code this so Melissa appears before Ava?
+
+let cutInFront = function(index, name, array){
+	array.splice(index, 0, name);
+    console.log(line);
+}
+
+cutInFront(1, "Ava", line);
+
+
+f) If Patrick wants to leave the line, how would you delete him from the array?
+
+
+let goesHome = function(name, array) {
+	for( var i=0; i<array.length; i++) {
+		if (array[i].match(name)) return array.splice(i, 1);
+		else console.log("That isn't " + name);
+	}
+}
+
+Provide another real-world example that you can model using a data structure.
+
+Another real world example that I can model is actually from a side project I'm working on: A workout log for Olympic weightlifting. In it we have exercises which could be stored as an array of objects. Each exercise has properties of ID, name, category.  From this array we have another array of movements called complexes which is where we take two exercises and perfrom reps of one then reps of the other. The most common example is clean and jerk or clean + jerk in the notation we're using. We then have an array of complexes which have an ID property and a segment property that pulls from the list of exercises. This way when we want to track out tonnage for various categories of movement we can write a function that will search through the complexes and exercises and give us a total.
+
+How would your data structure allow developers to access and manipulate the data?
+
+As far as manipulating the data, we are using a user generated database of exercises: So when someone logs in if they don't see a movement in there they use, then they can add it to the list. On our end that uses a push function to the exercise array.  If they want to add a complex the movement gets pushed first to the exercise array then to the complex array. So on our user end they don't have to add an exercise to the exercise list just to use it in a complex. 
