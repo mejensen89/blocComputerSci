@@ -59,4 +59,4 @@ Another real world example that I can model is actually from a side project I'm 
 
 How would your data structure allow developers to access and manipulate the data?
 
-As far as manipulating the data, we are using a user generated database of exercises: So when someone logs in if they don't see a movement in there they use, then they can add it to the list. On our end that uses a push function to the exercise array.  If they want to add a complex the movement gets pushed first to the exercise array then to the complex array. So on our user end they don't have to add an exercise to the exercise list just to use it in a complex. 
+ We have a front end user interface built to access the data. There's a "workout builder" section where users can create their workouts and it automatically updates the exercise list when a user enters a new exercise by itself or in a complex. 
