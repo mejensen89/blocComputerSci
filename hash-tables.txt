@@ -1,0 +1,95 @@
+>What is a hash table?
+
+A:  A data structure that stores each value by linking it to a unique key, forming a key-value pair. 
+
+>What is hashing?
+
+A: The conversion of a string to a numerical index. 
+
+>How does a hash table store data?
+
+As key-value pairs in an internal array. The step by step is: 1) Take the key 2) Convert key to a Hash Code via a Hashing Function 3) Mod the Hash Code to get an Array Index 4) Store the value at the Array Index. 
+
+>How are hash tables and objects different?
+
+A: Hash tables are intended to store data of similar nature. Objects can store data of any type. 
+
+>Determine whether you would use a hash table or an object to store each of the following pieces of data:
+
+A list of pets and their unique names - Hash Table
+The name, age, and the birthday of your best friend. Object
+The name and location of every company in a given city.- Hash Table
+All of the books checked out from a library by a particular individual. - Hast Table
+The primary and secondary phone numbers for a contact. - Object
+
+>Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers. Store this information in a hash table.
+
+```
+class Customer {
+	constructor(name, phoneNumber, address){
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.list = []
+	}
+	set(name, phoneNumber, address) {
+	this.list[phoneNumber] = [name, phoneNumber, address];
+	}
+	get(phoneNumber){
+		return this.list[phoneNumber]
+	}
+}
+```
+
+>Build a system that allows a store owner to track their store's inventory using a hash table for storage.
+
+```
+let hash = require('string-hash')
+class InventoryTrack{
+	constructor(item, quantity) {
+		this.item = item;
+		this.quantitty = quantity;
+		this.list = [];
+	}
+	set(item, quantity) {
+		this.list[hash(item)] = [item, quantity];
+	}
+	get(item) {
+		return this.list[hash(item)]
+	}
+}
+
+let delivery = new InventoryTrack()
+delivery.set('Mangos', 40)
+delivery.set('cabbages', 31)
+console.log(deliver.get('cabbages'));
+```
+
+>Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.'
+
+
+```
+let hash = require('string-hash')
+class DigiPaper{
+  constructor(publisher, publicationDate) {
+    this.publisher = publisher;
+    this.publicationDate = publicationDate;
+    this.list = []
+  }
+  set(publisher, publicationDate) {
+    this.list[hash(publicationDate)] = [publisher, publicationDate];
+    this.list[hash(publisher)] = [publisher, publicationDate]
+  }
+  get(publisherOrDate) {
+    return this.list[hash(publisherOrDate)]
+  }
+}
+let m = new DigiPaper()
+m.set('USA TODAY', 'Dec 14, 1999')
+m.set('HOUSTON CHRONICLE', 'Dec 25, 1999')
+m.set('Charlotte News', 'Dec 14, 2015')
+
+console.log(m.get('USA TODAY'))
+console.log(m.get('Dec 14, 1999'))
+console.log(m.get('Dec 14, 2015'))
+```
