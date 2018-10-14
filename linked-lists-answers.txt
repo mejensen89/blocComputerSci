@@ -1,0 +1,145 @@
+> What are some pros and cons of using linked lists instead of arrays?
+
+A: Because the machine can store each node independently, linked lists and their nodes require less memory to run and can grow to large sizes without as much memory draw. However, because each node contains directions to the next node and there's no way to access nodes in the middle without accessing the nodes before it, accessing data within the list can be inefficient. 
+
+
+>Come up with a real world example of a linked list.
+
+A: Digital world: web browser history.  Each entry is linked to the next in order of visitation.  Real world: A train. Each train car is linked to the other and to go from your car to a car further up the train, you will probably have to pass through a few other train cars. 
+
+### PROGRAMMING QUESTIONS
+
+>The linked list push function should take a value, create a node, and add it to the end of a list. Below is pseudocode for a push function for a singly linked list. However, there is something wrong with it. Submit both an explanation of the bug and a functional implementation of the method.
+
+>FUNCTION push(element)
+CREATE node
+SET node.value TO element
+SET node.next TO null
+
+>IF the head node does not exist
+ THEN SET head to node
+ELSE
+ SET current to head
+ SET current.next to node
+END IF
+END FUNCTION
+
+A: It inserts the current node next to the head instead of the at the end of the list. 
+
+FUNCTION push(element)
+CREATE node
+SET node.value TO element
+SET node.next TO null
+
+>IF the head node does not exist
+ THEN SET head to node
+ELSE
+ SET current to head
+ WHILE current.next exists
+	SET current TO current.next
+ END WHILE
+SET current.next TO Node
+END IF
+END FUNCTION
+
+
+
+2. Given an unsorted singly linked list, remove all duplicates from the linked list.
+
+```
+class LinkedList {
+	constructor() {
+		this.head = null;
+	}
+}
+
+class Node {
+	constructor(val) {
+		this.value = val;
+		this.next = null;
+	}
+}
+
+function removeDuplicates(list){
+  var node = list.head;
+  var sort = [];
+  array.push(list.head.value);
+ 
+  while(node.next){
+    if(sort.indexOf(node.next.value) != -1){
+       node.next = node.next.next;
+     } 
+     else {
+       sort.push(node.next.value);
+       node = node.next;
+     }
+  }
+  
+  return list;
+};
+
+var list = new LinkedList();
+var firstNode = new Node('a');
+var secondNode = new Node('c');
+var thirdNode = new Node('d');
+var fourthNode = new Node('d');
+var fifthNode = new Node('a');
+
+list.head = firstNode;
+firstNode.next = secondNode;
+secondNode.next = thirdNode;
+thirdNode.next = fourthNode;
+fourthNode.next = fifthNode;
+
+removeDuplicates(list);
+	
+}
+```
+
+>Given an unsorted singly linked list, reverse it.
+Example
+Input: a -> b -> c -> d
+Output: d -> c -> b -> a
+
+```
+class LinkedList {
+	constructor() {
+		this.head = null;
+	}
+}
+
+class Node {
+	constructor(val) {
+		this.value = val;
+		this.next = null;
+	}
+}
+
+function reverseList(list) {
+	var current = list.head;
+	var prev = null;
+
+	while(current) {
+		next = current.next;
+		current.next = prev;
+		prev = current;
+		current = next;
+	}
+	return prev;
+}
+
+var list = new LinkedList();
+var node1 = new Node('a');
+var node2 = new Node('b');
+var node3 = new Node('c');
+var node4 = new Node('d');
+
+list.head = node1;
+node1.next = node2;
+node2.next = node3;
+node3.next = node4;
+```
+
+
+
+
