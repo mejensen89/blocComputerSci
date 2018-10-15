@@ -1,0 +1,176 @@
+>What is a binary tree and what makes it unique to other trees?
+
+A: A binary tree is one in which each node points to no more than 2 other nodes. These nodes are referred to as the Left Child and Right Child and this data strcuture of the ability to point at a left and right child and nothing more makes the data structure unique. 
+
+>What is a heuristic?
+
+A: Guesses that an algorithm makes to solve a complex problem sooner by sacrificing accuracy. 
+
+>What is another problem besides the shortest-path problem that requires the use of heuristics?
+
+A: A lot of anti-virus software uses heuristic rules for detecting malware by looking for code or behavioural problems common to a class of malware. If a file or process is found to be executing a set of activities similiar to the pattern of malware, the anti-virus will flag the file or process as infected. 
+
+>What is the difference between a depth-first search and a breadth-first search?
+
+A: Depth first will explore a branch of the tree or data structure as far as it can before moving back towards the root and looking for unexplored avenues. A bredth first will explore the neighbors of the root first before moving to the next level. 
+
+>Explain in your own words what an undirected, a-cyclic, unweighted graph is.
+
+A: AN undirected, a-cyclic unweighted graph is one in which data can flow two ways between nodes, but nodes branches can not reconnect to the root at their terminus and there is no cost of travel associated with moving between nodes. The best example that comes to mind would be an old highway, like route  66 if you didn't have a map: You can drive either way down the road, your not sure how far it is to the next town, and when you reach California you're not going to magically teleport back to Chicago. 
+
+>What kind of graph is a binary search tree?
+
+A: A directed, unweighted acyclic graph. 
+
+### PROGRAMMING QUESTIONS ###
+
+>Given a Binary Search Tree and a value, write a function that checks to see whether the value exists within the tree.
+
+>Example: The value 10 exists in the tree. The value 23 does not exist in the tree.
+
+```
+class Node {
+	constructor(val) {
+		this.value = val;
+		this.left = null;
+		this.right = null;
+	}
+}
+
+function binaryTree(){
+	this.root = null;
+	
+	this.push = function(val) {
+		var root = this.root;
+		if(!root) {
+			this.root = new Node(val);
+			console.log("New Root")
+			return;
+		}
+
+	var currentNode = root;
+	var newNode = newNode(val);
+	while(currentNode) {
+		if (val < currentNode.value) {
+			if(!currentNode.left) {
+				currentNode.left = newNode;
+				break;
+			} else {
+				currentNode = currentNode.left;
+			}
+				
+		}else {
+			if (!currentNode.right) {
+					currentNode.right = newNode;
+					break;
+				}
+				else {
+					currentNode = currentNode.right;
+				}
+			}
+		}
+	}	
+
+	this.contains = function(val) {
+		var root = this.root;
+		var currentNode = root;
+		var foundValue = false;
+		while(!foundValue && currentNode) {
+			if(val < currentNode.val) {
+				currentNode = currentNode.left;
+			}
+			else if (val > currentNode.val) {
+				currentNode = currentNode.right;
+			}
+			else {
+				foundValue = true;
+			}
+		}
+		return foundValue;	
+	}
+};
+```
+
+Given a Binary Search Tree and two nodes, n1 and n2, write a function that finds the distance between the two nodes.
+
+Example: The distance between the nodes 4 and 10 is 4. The distance between the nodes 8 and 10 is 1. The distance between the nodes 1 and 14 is 4.
+
+```
+class Node {
+    constructor(data, left = null, right = null) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
+};
+
+class binarySearchTree {
+    constructor() {
+        this.root = null;
+    }
+
+    add(data) {
+            const node = this.root;
+            if (node === null) {
+                this.root = new Node(data);
+                return;
+            } else { 
+                const searchTree = function(node) {
+                    if (data < node.data) { 
+                        if (node.left === null) { 
+                            node.left = new Node(data);
+                            return;
+                        } else if (node.left !== null) { 
+                            return searchTree(node.left);
+                        }
+                    } else if (data > node.data) { 
+                        if (node.right === null) { 
+                            node.right = new Node(data);
+                            return;
+                        } else if (node.right !== null) {
+                            return searchTree(node.right);
+                        }
+                    } else { 
+                        return null;
+                    }
+                };
+                return searchTree(node); 
+            }
+        };
+
+    find(data) {
+        let current = this.root;
+        let distance = 0;
+        while (current.data !== data) {
+            if (data < current.data) {
+                current = current.left;
+                distance += 1;
+            } else {
+                current = current.right;
+                distance += 1;
+            }
+            if (current === null) {
+                return null;
+            }
+        }
+        return distance;
+    };
+
+    findDistance(node1, node2) {
+        const ancestor = this.root;
+        const node1Spot = this.find(node1);
+        const node2Spot = this.find(node2);
+        let distanceBetween;
+        if ((node1 > ancestor && node2 < ancestor) || (node1 < ancestor && node2 > ancestor)) {
+            distanceBetween = node1Spot + node2Spot;
+        } else {
+            if (node1Spot > node2Spot) {
+                distanceBetween = node1Spot - node2Spot;
+            } else {
+                distanceBetween = node2Spot - node1Spot;
+            }
+        }
+        return distanceBetween;
+    };
+};
+```
