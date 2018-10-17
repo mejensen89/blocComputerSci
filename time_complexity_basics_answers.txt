@@ -67,7 +67,7 @@ END FUNCTION
 //Googled and read stack overflow peice on this. Here: https://stackoverflow.com/questions/360748/computational-complexity-of-fibonacci-sequence
 ```
 
-A: O(1.6^n) Thats the golden ratio to the power of the input. 
+A: O(2^n)
 
 >Out of the code snippets you just saw, which is the most time efficient?
 
