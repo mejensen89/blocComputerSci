@@ -1,0 +1,77 @@
+###Short Answer###
+
+>What is a real-life scenario that uses linear search?
+
+A: Searching through your to-do list would be linear as would
+looking for plates in a weightlifting gym: You check where they should be, then they're not there, so you check where they shouldn't be, then they're not there so you check the bathroom and for some weird reason you find you $200 set of change plates in the bathroom. 
+
+>What is a real-life scenario that uses binary search?
+
+A: The phone book is an obvious example: If you're lookng for a John Doe, you'd open the phone book, see you're at the F last names, flip a bunch of pages back, see you're in the C last names, then thumb through pages one by one until you get to the D's. 
+
+To use a weightlifting example: Counting attempts at competitions. Counting attempts is how you figure out where your lifter is at in the lifting order and when they're going to be called up for their first attempt. Its important for timing warm up attempts so your lifter is warm at the correct time as sessions can last a long time. Lifters are called by the declared weight of their next attempt with lightest attempts going first.  In the event that two lifters are declared at the same weight, the lifter with the fewest attempts will go first. If they have the same attempt number the lowest Lot Number,  (A RNG value assigned at weigh in) will go first. So as a coach when you're in your session you know how the order of attempts is sorted and where you're lifter is opening at. So you look at the start list, see theres lifters declared at 60 kg, 65 kg, and 68 kg, 70 kg, 75 kg, 84 kg. You know you're lifter is opening at 70 kg so you can not worry about every one opening heavier and that the lifters at 60 will probably take all 3 of their attempts before your lifter goes. The lifter at 65 will take 2 attempts probably, and the 68 will take one: So 3+2+1 means you're 6 attempts deep: We did a binary search discarding all of the lifters opening above our lifter, and then a sum of the likely attempts before you lifter goes to calculate how much time after the session starts we have to get warm. 
+
+
+
+>Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using linear search?
+
+A: 7 //1A -> 2B -> 3C -> 4D -> 5E -> 6F -> 7G
+
+
+>Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using binary search?
+
+A: 3 // 1 selects e-g, two selects f-g, 3 selects and returns g. 
+
+>Given an unsorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+
+A:  Linear. Data must be sorted for Binary search to work. 
+
+>Given a sorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+
+A: Binary. By limiting amount of data we look at we can make a search algorithm that returns results in fewer iterations.
+
+###Programming Assignment:###
+
+>You and a friend have set a wager to see who can find the word "Albatross" in the dictionary the fastest. Write a program to allow you to win the bet.
+
+```
+//dictionaries are sorted alphabetically so use a binary search
+
+let dictionary = ['aardvark', 'albatross', 'ally', 'bog', 'clean', 'dictionary', 'ferret', 'jerk', 'kick', 'snatch', 'squat', 'pull', 'yeoman','zen']
+
+function dictionarySearch(dictionary, word) {
+	var low = 0;
+	var high = dictionary.length-1;
+
+	while (low <= high) {
+		var mid = Math.floor((low + high)/2);
+		if(word < dictionary[mid]) {
+			high = mid-1;
+		} else if (word > dictionary[mid]) {
+			low = mid+1;
+		}
+	}
+	return dictionary[mid];
+}
+
+console.log(dictionarySearch(dictionary, "albatross"));
+
+//For some reason my code doesn't want to work with high-index terms when there is an odd numbers of entries in the 'dictionary' array. I'm not sure why. 
+```
+
+>You work at a pet store, and a child has asked you to net the only white-spotted goldfish from the fish tank. Write a program that will help you net the right fish.
+
+```
+
+//Fish could be anywhere in the tank, so use iterative search
+
+let MainTank= ['molly', 'cherry barb', 'southern platyfish', 'discus', 'white-spotted goldfish'];
+
+function netFish(tank, targetFish) {
+	for (var i=0; i<tank.length; i++) {
+		(tank[i] === targetFish) ? console.log ("I got the fish") : console.log("That's not the right fish")
+	}
+}
+
+netFish(MainTank, 'white-spotted goldfish');
+```
